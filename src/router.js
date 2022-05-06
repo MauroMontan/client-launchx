@@ -22,6 +22,18 @@ const routes = [
         name: "add-commander",
         component: () => import("./components/AddCommander"),
     },
+
+    {
+        path: "/commanders",
+        name: "commanders",
+        component: () => import("./components/CoomandersList"),
+    },
+
+    {
+        path: "/commander/:id",
+        name: "commander-details",
+        component: () => import("./components/Commander"),
+    },
 ];
 const router = createRouter({
     history: createWebHistory(),

@@ -30,7 +30,7 @@ export default {
                     name: "Agregar explorer",
                 },
                 {
-                    to: "/Commanders",
+                    to: "/commanders",
                     name: "Commanders",
                 },
                 {
