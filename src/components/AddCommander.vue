@@ -45,19 +45,19 @@
                     name="mission"
                 />
             </div>
-            <button @click="saveExplorer" class="btn btn-success">
+            <button @click="saveCommander" class="btn btn-success">
                 Agregar
             </button>
         </div>
         <div v-else>
             <h4>Explorer creado exitosamente.</h4>
-            <button class="btn btn-success" @click="newExplorer">Add</button>
+            <button class="btn btn-success" @click="newCommander">Add</button>
         </div>
     </div>
 </template>
 
 <script>
-import ExplorerService from "../services/ExplorerService";
+import CommanderService from "../services/CommanderService";
 export default {
     name: "add-explorer",
     data() {
@@ -73,24 +73,25 @@ export default {
         };
     },
     methods: {
-        saveExplorer() {
+        saveCommander() {
             var data = {
-                name: this.explorer.name,
-                username: this.explorer.username,
-                mission: this.explorer.mission,
+                lang: this.commander.lang,
+                name: this.commander.name,
+                missionCommander: this.commander.missionCommander,
+                hasCerfication: this.commander.hasCertification,
             };
-            ExplorerService.create(data)
+            CommanderService.create(data)
                 .then((response) => {
-                    this.explorer.id = response.data.id;
+                    this.commander.id = response.data.id;
                     this.submitted = true;
                 })
                 .catch((e) => {
                     console.log(e);
                 });
         },
-        newExplorer() {
+        newCommander() {
             this.submitted = false;
-            this.explorer = {};
+            this.commander = {};
         },
     },
 };
