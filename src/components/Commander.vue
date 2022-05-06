@@ -1,6 +1,6 @@
 <template>
-    <h4>Explorer</h4>
-    <div v-if="currentExplorer" class="edit-form">
+    <h4>Commander</h4>
+    <div v-if="currentCommander" class="edit-form">
         <form>
             <div class="form-group">
                 <label for="title">Nombre</label>
@@ -9,33 +9,37 @@
                     disabled
                     class="form-control"
                     id="title"
-                    v-model="currentExplorer.name"
+                    v-model="currentCommander.name"
                 />
             </div>
             <div class="form-group">
-                <label for="title">Username</label>
+                <label for="title">Mission Commander</label>
                 <input
                     type="text"
                     disabled
                     class="form-control"
                     id="title"
-                    v-model="currentExplorer.username"
+                    v-model="currentCommander.missionCommander"
                 />
             </div>
             <div class="form-group">
-                <label for="title">Misión</label>
+                <label for="title">lang</label>
                 <input
                     type="text"
                     class="form-control"
                     id="title"
-                    v-model="currentExplorer.mission"
+                    v-model="currentCommander.lang"
                 />
             </div>
         </form>
-        <button class="btn btn-danger mr-2" @click="deleteExplorer">
+        <button class="btn btn-danger mr-2" @click="deleteCommander">
             Eliminar Explorer
         </button>
-        <button type="submit" class="btn btn-info mr-2" @click="updateExplorer">
+        <button
+            type="submit"
+            class="btn btn-info mr-2"
+            @click="updateCommander"
+        >
             Actualizar
         </button>
         <p>{{ message }}</p>
@@ -46,39 +50,39 @@
     </div>
 </template>
 <script>
-import ExplorerService from "../services/ExplorerService";
+import CommanderService from "../services/CommanderService";
 export default {
     name: "explorer",
     data() {
         return {
-            currentExplorer: null,
+            currentCommander: null,
             message: "",
         };
     },
     methods: {
-        getExplorer(id) {
-            ExplorerService.get(id)
+        getCommander(id) {
+            CommanderService.get(id)
                 .then((response) => {
-                    this.currentExplorer = response.data;
+                    this.currentCommander = response.data;
                 })
                 .catch((e) => {
                     console.log(e);
                 });
         },
-        deleteExplorer() {
-            ExplorerService.delete(this.currentExplorer.id)
+        deleteCommander() {
+            CommanderService.delete(this.currentCommander.id)
                 .then((response) => {
                     console.log(response.data);
-                    this.$router.push({ name: "explorers" });
+                    this.$router.push({ name: "commanders" });
                 })
                 .catch((e) => {
                     console.log(e);
                 });
         },
-        updateExplorer() {
-            ExplorerService.update(
-                this.currentExplorer.id,
-                this.currentExplorer
+        updateCommander() {
+            CommanderService.update(
+                this.currentCommander.id,
+                this.currentCommander
             )
                 .then((response) => {
                     console.log(response.data);
@@ -91,7 +95,7 @@ export default {
     },
     mounted() {
         this.message = "";
-        this.getExplorer(this.$route.params.id);
+        this.getCommander(this.$route.params.id);
     },
 };
 </script>
