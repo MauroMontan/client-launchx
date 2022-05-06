@@ -1,7 +1,7 @@
 <template>
     <div class="submit-form">
         <div v-if="!submitted">
-            <h3>Nuevo Explorer</h3>
+            <h3>Nuevo Commander</h3>
             <div class="form-group">
                 <label for="title">Nombre </label>
                 <input
@@ -9,29 +9,39 @@
                     class="form-control"
                     id="title"
                     required
-                    v-model="explorer.name"
+                    v-model="commander.name"
                     name="title"
+                />
+
+                <label for="missioncommander">Mission Commander </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="missioncommander"
+                    required
+                    v-model="commander.missionCommander"
+                    name="missioncommander"
                 />
             </div>
             <div class="form-group">
-                <label for="title">Username</label>
+                <label for="title">Lang</label>
                 <input
                     type="text"
                     class="form-control"
                     id="username"
                     required
-                    v-model="explorer.username"
+                    v-model="commander.lang"
                     name="username"
                 />
             </div>
             <div class="form-group">
-                <label for="title">Misión</label>
+                <label for="title">has certification</label>
                 <input
-                    type="text"
+                    type="checkbox"
                     class="form-control"
                     id="mission"
                     required
-                    v-model="explorer.mission"
+                    v-model="commander.hasCerfication"
                     name="mission"
                 />
             </div>
@@ -52,11 +62,12 @@ export default {
     name: "add-explorer",
     data() {
         return {
-            explorer: {
+            commander: {
                 id: null,
+                lang: "",
                 name: "",
-                username: "",
-                mission: "",
+                missionCommander: "",
+                hasCerfication: false,
             },
             submitted: false,
         };
